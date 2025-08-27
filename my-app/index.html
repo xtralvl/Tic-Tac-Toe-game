@@ -65,10 +65,23 @@
         <div id="o-scores-container" class="scores" ><p>O (CPU)</p><p id="o-current-points" >18</p></div>
       </div>
     </div>
+  </div>
 
-
-
+  <!-- MODAL -->
+  <div id="modal" >
+    <!-- This text changes based on the result -->
+    <h3 id="modal-result-text" >OH NO, YOU LOST…</h3>
+    <!-- This icon and text changes based on who takes the next round -->
+    <div id="modal-round-taker-container" >
+      <div class="next-round-taker" id="o-turn" ><img src="./src/assets/icon-o.svg" ><p>TAKES THE ROUND</p></div>
+      <!-- <div class="next-round-taker" id="x-turn" ><img src="./src/assets/icon-x.svg" ><p>TAKES THE ROUND</p></div> -->
     </div>
+    <div id="modal-buttons-container" >
+      <button id="quit-button">QUIT</button>
+      <button id="next-round-button">NEXT ROUND</button>
+    </div>
+
+  </div>
 
     <script type="module" src="/src/main.ts"></script>
   </body>

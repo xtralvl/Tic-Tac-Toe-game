@@ -125,11 +125,11 @@ body {
     // === DURING GAME SCREEN STYLES STARTS HERE === //
 
     #during-game-container {
-        //display: none;
+        display: none;
         grid-row: 1 / 5;
         width: 90vw;
         height: 95vh;
-        display: grid;
+        //display: grid;
 
 
         #during-game-top-row-container {
@@ -193,9 +193,6 @@ body {
                 flex-direction: row;
                 justify-content: space-around;
                 align-items: center;
-                
-
-
             }
 
             #first-field-row {
@@ -283,4 +280,99 @@ body {
 
         }
     }
+
+    // === MODAL STYLES STARTS HERE === //
+
+    #modal {
+        position: fixed;              // stays fixed relative to the viewport
+        top: 50%;                     // push to middle vertically
+        left: 50%;                    // push to middle horizontally
+        transform: translate(-50%, -50%); // correct the offset
+        width: 100vw;
+        height: 16rem;
+        background-color: v.$semi-dark-navy; // optional background
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 1rem 0;
+
+        #modal-result-text {
+            font-size: 1.3rem;
+            font-weight: bold;
+            letter-spacing: 0.88px;
+            color: v.$silver;
+            margin: 0;
+
+        }
+
+        #o-turn,
+        #x-turn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: .5rem;
+
+            img {
+                width: 1.9rem;
+                height: 1.9rem;
+            }
+
+            p {
+                font-weight: bold;
+                letter-spacing: 1.25px;
+                font-size: 1.5rem;
+            }
+        }
+
+        #o-turn {
+            p {
+                color: v.$light-yellow;
+            }
+        }
+
+        #x-turn {
+            p {
+                color: v.$light-blue;
+            }
+        }
+
+        #modal-buttons-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+
+
+            button {
+                border-top: none;
+                border-right: none;
+                border-left: none;
+                border-radius: 10px;
+                width: auto;
+                height: 3.25rem;
+                letter-spacing: 1px;
+                color: v.$dark-navy;
+                font-size: 1rem;
+                font-weight: bold;
+                padding: 1rem;
+            }
+
+            #quit-button {
+                background-color: v.$silver;
+                border-bottom: 5px solid v.$silver-shadow;
+
+            }
+
+            #next-round-button {
+                background-color: v.$light-yellow;
+                border-bottom: 5px solid v.$yellow-button-shadow;
+
+            }
+    
+
+        }
+
+        
+      }
+      
 }
