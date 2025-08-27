@@ -27,7 +27,47 @@
 
         <button id="menu-new-game-cpu-button" >NEW GAME (VS CPU)</button>
         <button id="menu-new-game-multi-button" >NEW GAME  (VS PLAYER)</button>
+    </div>
+
+    <!-- DURING GAME SCREEN -->
+    <div id="during-game-container" >
       
+      <div id="during-game-top-row-container" >
+      <div id="during-game-screen-logo-container">
+        <img src="./src/assets/logo.svg">
+      </div>
+      <!-- IT DISPLAYS THE ACTUAL TURN WITH JS -->
+      <div id="actual-turn-container" >
+        <p>X TURN</p>
+      </div>
+      <button id="restart-button" ><img src="./src/assets/icon-restart.svg" ></button>
+    </div>
+
+    <div id="fields-container" >
+      <div id="first-field-row" >
+        <button class="field" ><img src="./src/assets/icon-o.svg" ></button>
+        <button class="field" ><img src="./src/assets/icon-x.svg" ></button>
+        <button class="field" ></button>
+      </div>
+      <div id="second-field-row" >
+        <button class="field" ></button>
+        <button class="field" ></button>
+        <button class="field" ></button>
+      </div>
+      <div id="third-field-row" >
+        <button class="field" ></button>
+        <button class="field" ></button>
+        <button class="field" ></button>
+      </div>
+      <div id="scores-container" >
+        <div id="x-scores-container" class="scores" ><p>X (YOU)</p><p id="x-current-points" >12</p></div>
+        <div id="ties-container" class="scores" ><p>TIES</p><p id="current-ties">34</p></div>
+        <div id="o-scores-container" class="scores" ><p>O (CPU)</p><p id="o-current-points" >18</p></div>
+      </div>
+    </div>
+
+
+
     </div>
 
     <script type="module" src="/src/main.ts"></script>
