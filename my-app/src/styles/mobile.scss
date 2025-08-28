@@ -4,6 +4,30 @@
 
 
 body {
+
+    .active-icon {
+        transform: scale(1.05);
+    }
+
+    .not-active-icon {
+        opacity: 0.5;
+        transform: scale(0.9);
+      }
+
+
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.6); /* dark semi-transparent */
+        z-index: 999;                /* sits above page */
+        display: none;               /* hidden by default */
+        pointer-events: all;         /* blocks clicks to page */
+      }
+
     font-family: 'Outfit', sans-serif;
     margin: 0;
     padding: 0;
@@ -23,7 +47,7 @@ body {
     #new-game-menu {
         display: none;
         grid-row: 1 / 5;
-        //display: grid;
+        display: grid;
         grid-template-rows: repeat(4, auto);
         width: 90vw;
 
@@ -71,6 +95,9 @@ body {
                     display: flex;
                     justify-content: center;
                     align-items: center;
+
+
+                      
 
                     img {
                         height: 1.8rem;
@@ -296,6 +323,8 @@ body {
         align-items: center;
         text-align: center;
         padding: 1rem 0;
+        z-index: 1000; /* sits above overlay */
+        display: none;
 
         #modal-result-text {
             font-size: 1.3rem;
@@ -307,7 +336,8 @@ body {
         }
 
         #o-turn,
-        #x-turn {
+        #x-turn,
+        #restart-game {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -335,6 +365,10 @@ body {
             p {
                 color: v.$light-blue;
             }
+        }
+
+        #restart-game {
+            color: v.$silver;
         }
 
         #modal-buttons-container {
