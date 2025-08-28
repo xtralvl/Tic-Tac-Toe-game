@@ -12,9 +12,8 @@ const startGameButton = document.getElementById('start-game') as HTMLButtonEleme
 let player1 : string = '';
 let player2 : string = '';
 
-let cpu : boolean = false;
+let _cpu : boolean = false;
 let isGameChoosed : boolean = false;
-
 
 
 function updateStartButton() {
@@ -54,8 +53,9 @@ function updateStartButton() {
       updateStartButton();
     });
   
+    // === if we play against the cpu === //
     cpuGame.addEventListener('click', () => {
-      cpu = true;
+      _cpu = true;
       isGameChoosed = true;
   
       cpuGame.classList.add('active-icon');
@@ -67,8 +67,9 @@ function updateStartButton() {
       updateStartButton();
     });
   
+    // === if we play against another player === //
     multiGame.addEventListener('click', () => {
-      cpu = false;
+      _cpu = false;
       isGameChoosed = true;
   
       multiGame.classList.add('active-icon');
