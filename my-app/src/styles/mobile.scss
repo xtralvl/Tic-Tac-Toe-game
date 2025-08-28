@@ -142,8 +142,54 @@ body {
             grid-row: 4;
             background-color: v.$light-blue;
             border-bottom: 10px solid v.$blue-button-shadow;
+            margin-bottom: 2.5rem;
 
         }
+        #start-game {
+            grid-row: 5;
+            background-color: white;
+            border-bottom: 10px solid v.$silver-shadow !important;
+            color: v.$dark-navy;
+            border: none;
+            border-radius: 15px;
+            height: 4rem;
+            font-weight: bold;
+            font-size: 1rem;
+            width: 80%;
+            margin: 0 auto;
+            cursor: not-allowed; // default when disabled
+            opacity: 0.3;        // faded out when disabled
+            transition: opacity 0.3s ease;
+
+            
+        }
+
+            // When disabled
+            #start-game:disabled {
+                pointer-events: none;
+                opacity: 0.5;
+                transform: scale(1);
+                animation: none; // stop animation
+            }
+            
+            // When enabled
+            #start-game.enabled {
+                cursor: pointer;
+                opacity: 1;
+                animation: pulse 2s infinite ease-in-out;
+            }
+
+            // Pulse animation
+            @keyframes pulse {
+                0%, 100% {
+                transform: scale(1);
+                }
+                50% {
+                transform: scale(1.05);
+                }
+            }
+
+
 
     }
 
