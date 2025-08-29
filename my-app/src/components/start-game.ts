@@ -1,6 +1,6 @@
 // === THIS FILE HANDLES THE ICON CHOOSING OF THE STARTING PAGE/MENU OF THE GAME === //
 
-const newGameMenu = document.getElementById('new-game-menu') as HTMLDivElement;
+export const newGameMenu = document.getElementById('new-game-menu') as HTMLDivElement;
 
 const XIcon = document.getElementById('x-button-menu') as HTMLButtonElement;
 const OIcon = document.getElementById('o-button-menu') as HTMLButtonElement;
@@ -10,9 +10,15 @@ const multiGame = document.getElementById('menu-new-game-multi-button') as HTMLB
 
 const startGameButton = document.getElementById('start-game') as HTMLButtonElement;
 
+const duringGame = document.getElementById('during-game-container') as HTMLDivElement;
 
-let player1 : string = '';
-let player2 : string = '';
+
+
+export const currentPlayerObject = {
+  player1: '' as 'X' | 'O' | '',
+  player2: '' as 'X' | 'O' | '',
+  currentPlayer: '' as 'X' | 'O' | ''
+};
 
 let _cpu : boolean = false;
 let isGameChoosed : boolean = false;
@@ -20,8 +26,8 @@ let isGameStarted : boolean = false;
 
 
 export function updateStartButton() {
-    if (player1 && player2 && isGameChoosed) {
-      startGameButton.classList.add('enabled');
+  if (currentPlayerObject.player1 && currentPlayerObject.player2 && isGameChoosed) {
+    startGameButton.classList.add('enabled');
       startGameButton.disabled = false;
     } else {
       startGameButton.classList.remove('enabled');
@@ -31,8 +37,8 @@ export function updateStartButton() {
   
   export function startGame() {
     XIcon.addEventListener('click', () => {
-      player1 = 'X';
-      player2 = 'O';    
+      currentPlayerObject.player1 = 'X';
+      currentPlayerObject.player2 = 'O';    
   
       XIcon.classList.add('active-icon');
       XIcon.classList.remove('not-active-icon');
@@ -44,8 +50,8 @@ export function updateStartButton() {
     });
     
     OIcon.addEventListener('click', () => {
-      player1 = 'O';
-      player2 = 'X';
+      currentPlayerObject.player1 = 'O';
+      currentPlayerObject.player2 = 'X';    
   
       OIcon.classList.add('active-icon');
       OIcon.classList.remove('not-active-icon');
@@ -87,15 +93,19 @@ export function updateStartButton() {
 
     // if both the icons and the game style is chosen we can click on the start game button and if we do, the isGameStarted variable changes from false to true
     startGameButton.addEventListener('click', () => {
-      if (player1 && player2 && isGameChoosed) {
+      if (currentPlayerObject.player1 && currentPlayerObject.player2 && isGameChoosed) {
         isGameStarted = true;
+        currentPlayerObject.currentPlayer = currentPlayerObject.player1;
       }
 
       if (isGameStarted) {
         newGameMenu.style.display = 'none'
+        duringGame.style.display = 'grid'
         
       } else {
         newGameMenu.style.display = 'grid'
+        duringGame.style.display = 'none'
+
       }
     });
 
