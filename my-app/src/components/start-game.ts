@@ -1,5 +1,7 @@
 // === THIS FILE HANDLES THE ICON CHOOSING OF THE STARTING PAGE/MENU OF THE GAME === //
 
+const newGameMenu = document.getElementById('new-game-menu') as HTMLDivElement;
+
 const XIcon = document.getElementById('x-button-menu') as HTMLButtonElement;
 const OIcon = document.getElementById('o-button-menu') as HTMLButtonElement;
 
@@ -14,9 +16,10 @@ let player2 : string = '';
 
 let _cpu : boolean = false;
 let isGameChoosed : boolean = false;
+let isGameStarted : boolean = false;
 
 
-function updateStartButton() {
+export function updateStartButton() {
     if (player1 && player2 && isGameChoosed) {
       startGameButton.classList.add('enabled');
       startGameButton.disabled = false;
@@ -26,7 +29,7 @@ function updateStartButton() {
     }
   }
   
-  function startGame() {
+  export function startGame() {
     XIcon.addEventListener('click', () => {
       player1 = 'X';
       player2 = 'O';    
@@ -79,9 +82,26 @@ function updateStartButton() {
       cpuGame.classList.remove('active-icon');
   
       updateStartButton();
+
     });
-  
+
+    // if both the icons and the game style is chosen we can click on the start game button and if we do, the isGameStarted variable changes from false to true
+    startGameButton.addEventListener('click', () => {
+      if (player1 && player2 && isGameChoosed) {
+        isGameStarted = true;
+      }
+
+      if (isGameStarted) {
+        newGameMenu.style.display = 'none'
+        
+      } else {
+        newGameMenu.style.display = 'grid'
+      }
+    });
+
+
     updateStartButton(); // run once on init
+    
   };
   
   startGame();
