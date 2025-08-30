@@ -6,6 +6,12 @@ const fields = document.querySelectorAll<HTMLButtonElement>('.field');
 const actualTurn = document.getElementById('actual-turn-container');
 const restartButton = document.getElementById('restart-button') as HTMLButtonElement;
 
+const modal = document.getElementById('modal') as HTMLDivElement;
+const modalResultText = document.getElementById('modal-result-text') as HTMLHeadElement;
+
+const overlay = document.querySelector('.overlay') as HTMLDivElement;
+const nextRoundButton = document.getElementById('next-round-button') as HTMLButtonElement;
+
 // keep the moves outside of the click handler so they persist
 let player1Moves: number[] = [];
 let player2Moves: number[] = [];
@@ -53,10 +59,13 @@ function gameRuns() {
           if (winCombo) {
             winCombo.forEach(i => {
             fields[i].style.border = '2px solid #31C3BD';  // or 'winner-field-o'
-
+            modal.style.display = 'grid';
+            modalResultText.textContent = `Player1 (${currentPlayerObject.currentPlayer}) wins!`
+            overlay.style.display = 'block';
+            nextRoundButton.style.backgroundColor = '#31C3BD';
+            nextRoundButton.style.borderBottom = '5px solid #218683';
 
             });
-            console.log("Player wins!", player1Moves);
           }
           
           currentPlayerObject.currentPlayer = 'O';
@@ -70,8 +79,15 @@ function gameRuns() {
           if (winCombo) {
             winCombo.forEach(i => {
                 fields[i].style.border = '2px solid #F2B137';  // or 'winner-field-o'
+                modal.style.display = 'grid';
+                modalResultText.textContent = `Player2 (${currentPlayerObject.currentPlayer}) wins!`
+                overlay.style.display = 'block';
+                nextRoundButton.style.backgroundColor = '#F2B137';
+                nextRoundButton.style.borderBottom = '5px solid #b9872b';
+    
+
+    
             });
-            console.log("Player 2 (O) wins!", player2Moves);
           }
             currentPlayerObject.currentPlayer = 'X';
         }
@@ -105,6 +121,8 @@ function gameRuns() {
     });
   }
   restartButtonFunction();
+
+
 }
 
 gameRuns();
