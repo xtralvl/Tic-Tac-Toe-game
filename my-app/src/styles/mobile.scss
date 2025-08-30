@@ -36,6 +36,17 @@ body {
         pointer-events: all;         /* blocks clicks to page */
       }
 
+      .yellow-winner-border {
+        border: '2px solid #F2B137';
+      }
+
+      .blue-winner-border {
+        border: '2px solid #31C3BD';
+      }
+
+
+
+
     font-family: 'Outfit', sans-serif;
     margin: 0;
     padding: 0 ;

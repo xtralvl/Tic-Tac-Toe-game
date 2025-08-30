@@ -61,13 +61,13 @@ function gameRuns() {
           const winCombo = getWinningCombo(player1Moves); // or player2Moves
           if (winCombo) {
             winCombo.forEach(i => {
-            fields[i].style.border = '2px solid #31C3BD';  // or 'winner-field-o'
-            modal.style.display = 'grid';
-            modalResultText.textContent = `Player1 (${currentPlayerObject.currentPlayer}) wins!`
-            modalWinnerIcon.innerHTML = '<img src="./src/assets/icon-x.svg">'
-            overlay.style.display = 'block';
-            nextRoundButton.style.backgroundColor = '#31C3BD';
-            nextRoundButton.style.borderBottom = '5px solid #218683';
+              fields[i].classList.add('blue-winner-border');
+              modal.style.display = 'grid';
+              modalResultText.textContent = `Player1 (${currentPlayerObject.currentPlayer}) wins!`
+              modalWinnerIcon.innerHTML = '<img src="./src/assets/icon-x.svg">'
+              overlay.style.display = 'block';
+              nextRoundButton.style.backgroundColor = '#31C3BD';
+              nextRoundButton.style.borderBottom = '5px solid #218683';
 
             });
           }
@@ -82,7 +82,7 @@ function gameRuns() {
           const winCombo = getWinningCombo(player2Moves);
           if (winCombo) {
             winCombo.forEach(i => {
-                fields[i].style.border = '2px solid #F2B137';  // or 'winner-field-o'
+                fields[i].classList.add('yellow-winner-border');
                 modal.style.display = 'grid';
                 modalResultText.textContent = `Player2 (${currentPlayerObject.currentPlayer}) wins!`
                 modalWinnerIcon.innerHTML = '<img src="./src/assets/icon-o.svg">'
@@ -110,8 +110,7 @@ function gameRuns() {
         field.innerHTML = '';
         field.disabled = false; // re-enable buttons
         field.style.opacity = '0.65'
-        field.classList.remove('winner-field-x', 'winner-field-o');
-        field.style.border = 'none';
+        field.classList.remove('blue-winner-border', 'yellow-winner-border');
 
 
       });
@@ -132,8 +131,7 @@ function gameRuns() {
       field.innerHTML = '';
       field.disabled = false; // re-enable buttons
       field.style.opacity = '0.65'
-      field.classList.remove('winner-field-x', 'winner-field-o');
-      field.style.border = 'none';  // or 'winner-field-o'
+      field.classList.remove('blue-winner-border', 'yellow-winner-border');
     });
   });
 
