@@ -2,8 +2,8 @@
 
 import { currentPlayerObject, newGameMenu, duringGame, startGameButton, OIcon, XIcon, cpuGame, multiGame, cpu } from './start-game';
 
-import iconX from './assets/icon-x.svg';
-import iconO from './assets/icon-o.svg';
+import iconX from '../assets/icon-x.svg';
+import iconO from '../assets/icon-o.svg';
 
 const fields = document.querySelectorAll<HTMLButtonElement>('.field');
 const actualTurn = document.getElementById('actual-turn-container');
