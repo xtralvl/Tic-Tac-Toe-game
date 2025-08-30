@@ -279,7 +279,7 @@ body {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(4, 1fr);
-            margin: -7rem 0 1rem 0;
+            margin: -12rem 0 1rem 0;
 
             #first-field-row,
             #second-field-row,
@@ -347,7 +347,7 @@ body {
         }
 
         #scores-container {
-            margin-top: -4rem;
+            margin-top: -6rem;
             grid-row: 4;
             grid-column: 1 / 4;
 
