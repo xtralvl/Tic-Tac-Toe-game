@@ -14,6 +14,7 @@ const duringGame = document.getElementById('during-game-container') as HTMLDivEl
 
 
 
+
 export const currentPlayerObject = {
   player1: '' as 'X' | 'O' | '',
   player2: '' as 'X' | 'O' | '',
