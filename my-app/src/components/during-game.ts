@@ -31,6 +31,16 @@ const winningCombos: number[][] = [
     [0, 4, 8], // diagonal
     [2, 4, 6]  // other diagonal
   ];
+
+  const player1Points = document.getElementById('player1-current-points') as HTMLParagraphElement;
+  const player2Points = document.getElementById('player2-current-points') as HTMLParagraphElement;
+
+
+  let player1Wins : number = 0;
+  let ties : number = 0;
+  let player2Wins : number = 0;
+
+
   
 // check if a player has a winning combo
 // ChatGPT did this function
@@ -62,14 +72,19 @@ function gameRuns() {
           if (winCombo) {
             winCombo.forEach(i => {
               fields[i].classList.add('blue-winner-border');
-              modal.style.display = 'grid';
-              modalResultText.textContent = `Player1 (${currentPlayerObject.currentPlayer}) wins!`
-              modalWinnerIcon.innerHTML = '<img src="./src/assets/icon-x.svg">'
-              overlay.style.display = 'block';
-              nextRoundButton.style.backgroundColor = '#31C3BD';
-              nextRoundButton.style.borderBottom = '5px solid #218683';
+
 
             });
+            modal.style.display = 'grid';
+            modalResultText.textContent = `Player1 (${currentPlayerObject.currentPlayer}) wins!`
+            modalWinnerIcon.innerHTML = '<img src="./src/assets/icon-x.svg">'
+            overlay.style.display = 'block';
+            nextRoundButton.style.backgroundColor = '#31C3BD';
+            nextRoundButton.style.borderBottom = '5px solid #218683';
+
+            player1Wins ++;
+            player1Points.textContent = `${player1Wins}`
+
           }
           
           currentPlayerObject.currentPlayer = 'O';
@@ -84,13 +99,18 @@ function gameRuns() {
           if (winCombo) {
             winCombo.forEach(i => {
                 fields[i].classList.add('yellow-winner-border');
-                modal.style.display = 'grid';
-                modalResultText.textContent = `Player2 (${currentPlayerObject.currentPlayer}) wins!`
-                modalWinnerIcon.innerHTML = '<img src="./src/assets/icon-o.svg">'
-                overlay.style.display = 'block';
-                nextRoundButton.style.backgroundColor = '#F2B137';
-                nextRoundButton.style.borderBottom = '5px solid #b9872b';
+
             });
+            modal.style.display = 'grid';
+            modalResultText.textContent = `Player2 (${currentPlayerObject.currentPlayer}) wins!`
+            modalWinnerIcon.innerHTML = '<img src="./src/assets/icon-o.svg">'
+            overlay.style.display = 'block';
+            nextRoundButton.style.backgroundColor = '#F2B137';
+            nextRoundButton.style.borderBottom = '5px solid #b9872b';
+
+            player2Wins ++;
+            player2Points.textContent = `${player2Wins}`
+
           }
             currentPlayerObject.currentPlayer = 'X';
         }
@@ -133,7 +153,16 @@ function gameRuns() {
       field.disabled = false; // re-enable buttons
       field.style.opacity = '0.65'
       field.classList.remove('blue-winner-border', 'yellow-winner-border');
+
     });
+    player1Moves = [];
+    player2Moves = [];
+    currentPlayerObject.currentPlayer = 'X'; // reset to start
+    if (actualTurn) {
+      actualTurn.innerHTML = `<p>X TURN</p>`;
+    }
+
+    
   });
 
   // === QUIT BUTTON === //
@@ -149,6 +178,9 @@ function gameRuns() {
     XIcon.classList.add('not-active-icon');
     cpuGame.style.opacity = '0.5';
     multiGame.style.opacity = '0.5';
+    player1Wins = 0;
+    player2Wins = 0;
+
 
     fields.forEach(field => {
       field.innerHTML = '';
