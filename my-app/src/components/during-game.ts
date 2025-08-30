@@ -84,9 +84,6 @@ function gameRuns() {
                 overlay.style.display = 'block';
                 nextRoundButton.style.backgroundColor = '#F2B137';
                 nextRoundButton.style.borderBottom = '5px solid #b9872b';
-    
-
-    
             });
           }
             currentPlayerObject.currentPlayer = 'X';
@@ -121,6 +118,20 @@ function gameRuns() {
     });
   }
   restartButtonFunction();
+
+  nextRoundButton.addEventListener('click', () => {
+    modal.style.display = 'none';
+    overlay.style.display = 'none';
+    fields.forEach(field => {
+      field.innerHTML = '';
+      field.disabled = false; // re-enable buttons
+      field.style.opacity = '0.65'
+      field.classList.remove('winner-field-x', 'winner-field-o');
+      field.style.border = 'none';  // or 'winner-field-o'
+    });
+
+
+  })
 
 
 }

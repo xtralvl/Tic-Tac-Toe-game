@@ -68,11 +68,8 @@ export function updateStartButton() {
       _cpu = true;
       isGameChoosed = true;
   
-      cpuGame.classList.add('active-icon');
-      cpuGame.classList.remove('not-active-icon');
-  
-      multiGame.classList.add('not-active-icon');
-      multiGame.classList.remove('active-icon');
+      cpuGame.style.opacity = '1';
+      multiGame.style.opacity = '0.5';
   
       updateStartButton();
     });
@@ -82,11 +79,8 @@ export function updateStartButton() {
       _cpu = false;
       isGameChoosed = true;
   
-      multiGame.classList.add('active-icon');
-      multiGame.classList.remove('not-active-icon');
-  
-      cpuGame.classList.add('not-active-icon');
-      cpuGame.classList.remove('active-icon');
+      multiGame.style.opacity = '1';
+      cpuGame.style.opacity = '0.5';
   
       updateStartButton();
 
