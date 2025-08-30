@@ -2,6 +2,9 @@
 
 import { currentPlayerObject, newGameMenu, duringGame, startGameButton, OIcon, XIcon, cpuGame, multiGame, cpu } from './start-game';
 
+import iconX from './assets/icon-x.svg';
+import iconO from './assets/icon-o.svg';
+
 const fields = document.querySelectorAll<HTMLButtonElement>('.field');
 const actualTurn = document.getElementById('actual-turn-container');
 const restartButton = document.getElementById('restart-button') as HTMLButtonElement;
@@ -34,7 +37,7 @@ function cpuPlay() {
 
   if (!field || field.disabled) return; // safety check
 
-  field.innerHTML = `<img src="./src/assets/icon-o.svg">`;
+  field.innerHTML = `<img src="${iconO}">`;
   field.disabled = true;
   field.style.opacity = '1';
   player2Moves.push(index);
@@ -106,7 +109,7 @@ function gameRuns() {
 
         // place current player's icon
         if (currentPlayerObject.currentPlayer === 'X') {
-          field.innerHTML = `<img src="./src/assets/icon-x.svg">`;
+          field.innerHTML = `<img src="${iconX}">`;
           field.disabled = true;
           field.style.opacity = '1'
           player1Moves.push(index);
@@ -122,7 +125,7 @@ function gameRuns() {
             });
             modal.style.display = 'grid';
             modalResultText.textContent = `Player1 (${currentPlayerObject.currentPlayer}) wins!`
-            modalWinnerIcon.innerHTML = '<img src="./src/assets/icon-x.svg">'
+            modalWinnerIcon.innerHTML = `<img src="${iconX}">`;
             overlay.style.display = 'block';
             nextRoundButton.style.backgroundColor = '#31C3BD';
             nextRoundButton.style.borderBottom = '5px solid #218683';
@@ -145,7 +148,7 @@ function gameRuns() {
         }
         
         else {
-              field.innerHTML = `<img src="./src/assets/icon-o.svg">`;
+              field.innerHTML = `<img src="${iconO}">`;
               field.disabled = true;
               player2Moves.push(index);
               field.style.opacity = '1'
@@ -159,7 +162,7 @@ function gameRuns() {
             });
             modal.style.display = 'grid';
             modalResultText.textContent = `Player2 (${currentPlayerObject.currentPlayer}) wins!`
-            modalWinnerIcon.innerHTML = '<img src="./src/assets/icon-o.svg">'
+            modalWinnerIcon.innerHTML = `<img src="${iconO}">`;
             overlay.style.display = 'block';
             nextRoundButton.style.backgroundColor = '#F2B137';
             nextRoundButton.style.borderBottom = '5px solid #b9872b';
