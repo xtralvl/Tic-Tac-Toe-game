@@ -73,6 +73,7 @@ function gameRuns() {
           }
           
           currentPlayerObject.currentPlayer = 'O';
+
         } else {
           field.innerHTML = `<img src="./src/assets/icon-o.svg">`;
           field.disabled = true;
@@ -135,6 +136,8 @@ function gameRuns() {
     });
   });
 
+  // === QUIT BUTTON === //
+
   quitButton.addEventListener('click', () => {
     duringGame.style.display = 'none';
     newGameMenu.style.display = 'grid';
@@ -147,10 +150,18 @@ function gameRuns() {
     cpuGame.style.opacity = '0.5';
     multiGame.style.opacity = '0.5';
 
-
-
+    fields.forEach(field => {
+      field.innerHTML = '';
+      field.disabled = false; // re-enable buttons
+      field.style.opacity = '0.65'
+      field.classList.remove('blue-winner-border', 'yellow-winner-border');
+    });
 
   })
+
+  function cpuMoves() {
+
+  }
 
 
 }
