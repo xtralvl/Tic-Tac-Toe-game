@@ -138,7 +138,7 @@ function gameRuns() {
             if (cpuTurn) {
               setTimeout(cpuPlay, 500); // slight delay so it feels natural
             }
-          }
+          };
           
 
 
