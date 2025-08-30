@@ -42,14 +42,14 @@ function cpuPlay() {
 
   const winCombo = getWinningCombo(player2Moves);
   if (winCombo) {
-    winCombo.forEach(i => fields[i].classList.add('yellow-winner-border'));
+    winCombo.forEach(i => fields[i].style.border = '2px solid #F2B137');
     modal.style.display = 'grid';
     modalResultText.textContent = `Player2 (O) wins!`;
     modalWinnerIcon.innerHTML = '<img src="./src/assets/icon-o.svg">';
     overlay.style.display = 'block';
     nextRoundButton.style.backgroundColor = '#F2B137';
     nextRoundButton.style.borderBottom = '5px solid #b9872b';
-
+    
     player2Wins++;
     player2Points.textContent = `${player2Wins}`;
   }
@@ -116,7 +116,7 @@ function gameRuns() {
           const winCombo = getWinningCombo(player1Moves); 
           if (winCombo) {
             winCombo.forEach(i => {
-              fields[i].classList.add('blue-winner-border');
+              fields[i].style.border = '2px solid #31C3BD';
 
 
             });
@@ -154,7 +154,7 @@ function gameRuns() {
           
           if (winCombo) {
             winCombo.forEach(i => {
-                fields[i].classList.add('yellow-winner-border');
+                fields[i].style.border = '2px solid #F2B137';
 
             });
             modal.style.display = 'grid';

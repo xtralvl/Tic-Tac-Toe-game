@@ -36,17 +36,6 @@ body {
         pointer-events: all;         /* blocks clicks to page */
       }
 
-      .yellow-winner-border {
-        border: '2px solid #F2B137';
-      }
-
-      .blue-winner-border {
-        border: '2px solid #31C3BD';
-      }
-
-
-
-
     font-family: 'Outfit', sans-serif;
     margin: 0;
     padding: 0 ;
@@ -223,7 +212,7 @@ body {
         display: none;
         grid-row: 1 / 5;
         width: 90vw;
-        height: 95vh;
+        height: 100vh;
         //display: grid; // display none and display it when game started
 
 
@@ -279,7 +268,7 @@ body {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(4, 1fr);
-            margin: -12rem 0 1rem 0;
+            margin: -20rem 0 1rem 0;
 
             #first-field-row,
             #second-field-row,
@@ -300,19 +289,19 @@ body {
             #second-field-row {
                 grid-row: 2;
                 grid-column: 1 / 4;
-                margin-top: -2rem;
+                margin-top: -6rem;
             }
 
             #third-field-row {
                 grid-row: 3;
                 grid-column: 1 / 4;
-                margin-top: -3.8rem;
+                margin-top: -12rem;
 
             }
 
             .field {
-                width: 6rem;
-                height: 6rem;
+                width: 5rem;
+                height: 5rem;
                 border-radius: 10px;
                 background-color: v.$semi-dark-navy;
                 border-bottom: 8px solid v.$dark-navy-shadow;
@@ -347,7 +336,7 @@ body {
         }
 
         #scores-container {
-            margin-top: -6rem;
+            margin-top: -16rem;
             grid-row: 4;
             grid-column: 1 / 4;
 
