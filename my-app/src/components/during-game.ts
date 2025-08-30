@@ -1,6 +1,6 @@
 // === THIS HANDLES THE DURING GAME === //
 
-import { currentPlayerObject, newGameMenu, duringGame, startGameButton, OIcon, XIcon, cpuGame, multiGame } from './start-game';
+import { currentPlayerObject, newGameMenu, duringGame, startGameButton, OIcon, XIcon, cpuGame, multiGame, cpu } from './start-game';
 
 const fields = document.querySelectorAll<HTMLButtonElement>('.field');
 const actualTurn = document.getElementById('actual-turn-container');
@@ -18,7 +18,49 @@ const quitButton = document.getElementById('quit-button') as HTMLButtonElement;
 // keep the moves outside of the click handler so they persist
 let player1Moves: number[] = [];
 let player2Moves: number[] = []; // it is cpu moves also
-let winnerFields : any = [];
+
+function generateRandomCpuStep(): number {
+  const freeIndexes = Array.from(fields)
+    .map((f, i) => f.disabled ? null : i)
+    .filter(i => i !== null) as number[];
+  
+  const randomIndex = freeIndexes[Math.floor(Math.random() * freeIndexes.length)];
+  return randomIndex;
+}
+
+function cpuPlay() {
+  const index = generateRandomCpuStep();
+  const field = fields[index];
+
+  if (!field || field.disabled) return; // safety check
+
+  field.innerHTML = `<img src="./src/assets/icon-o.svg">`;
+  field.disabled = true;
+  field.style.opacity = '1';
+  player2Moves.push(index);
+  cpuTurn = false;
+
+  const winCombo = getWinningCombo(player2Moves);
+  if (winCombo) {
+    winCombo.forEach(i => fields[i].classList.add('yellow-winner-border'));
+    modal.style.display = 'grid';
+    modalResultText.textContent = `Player2 (O) wins!`;
+    modalWinnerIcon.innerHTML = '<img src="./src/assets/icon-o.svg">';
+    overlay.style.display = 'block';
+    nextRoundButton.style.backgroundColor = '#F2B137';
+    nextRoundButton.style.borderBottom = '5px solid #b9872b';
+
+    player2Wins++;
+    player2Points.textContent = `${player2Wins}`;
+  }
+
+  currentPlayerObject.currentPlayer = 'X';
+
+  if (actualTurn) {
+    actualTurn.innerHTML = `<p>X TURN</p>`;
+  }
+}
+
 
 
 const winningCombos: number[][] = [
@@ -39,6 +81,7 @@ const winningCombos: number[][] = [
   let player1Wins : number = 0;
   let ties : number = 0;
   let player2Wins : number = 0;
+  let cpuTurn : boolean = false;
 
 
   
@@ -67,8 +110,10 @@ function gameRuns() {
           field.disabled = true;
           field.style.opacity = '1'
           player1Moves.push(index);
+          cpuTurn = true;
 
-          const winCombo = getWinningCombo(player1Moves); // or player2Moves
+
+          const winCombo = getWinningCombo(player1Moves); 
           if (winCombo) {
             winCombo.forEach(i => {
               fields[i].classList.add('blue-winner-border');
@@ -89,13 +134,24 @@ function gameRuns() {
           
           currentPlayerObject.currentPlayer = 'O';
 
-        } else {
-          field.innerHTML = `<img src="./src/assets/icon-o.svg">`;
-          field.disabled = true;
-          player2Moves.push(index);
-          field.style.opacity = '1'
+          if (cpu) {
+            if (cpuTurn) {
+              setTimeout(cpuPlay, 500); // slight delay so it feels natural
+            }
+          }
+          
+
+
+        }
+        
+        else {
+              field.innerHTML = `<img src="./src/assets/icon-o.svg">`;
+              field.disabled = true;
+              player2Moves.push(index);
+              field.style.opacity = '1'
 
           const winCombo = getWinningCombo(player2Moves);
+          
           if (winCombo) {
             winCombo.forEach(i => {
                 fields[i].classList.add('yellow-winner-border');
@@ -114,17 +170,21 @@ function gameRuns() {
           }
             currentPlayerObject.currentPlayer = 'X';
         }
+      
 
         // update turn display
         if (actualTurn) {
           actualTurn.innerHTML = `<p>${currentPlayerObject.currentPlayer} TURN</p>`;
         }
       });
+      
+
+      // the cpu comes here 
     });
   }
   handleClickedField();
 
-  // reset everything on restart
+  // === RESTART BUTTON - reset everything on restart === //
   function restartButtonFunction() {
     restartButton.addEventListener('click', () => {
       fields.forEach(field => {
@@ -144,6 +204,8 @@ function gameRuns() {
     });
   }
   restartButtonFunction();
+
+    // === NEXT ROUND BUTTON BUTTON === //
 
   nextRoundButton.addEventListener('click', () => {
     modal.style.display = 'none';
@@ -190,11 +252,6 @@ function gameRuns() {
     });
 
   })
-
-  function cpuMoves() {
-
-  }
-
 
 }
 

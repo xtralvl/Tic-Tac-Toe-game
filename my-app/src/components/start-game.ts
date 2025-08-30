@@ -21,7 +21,7 @@ export const currentPlayerObject = {
   currentPlayer: '' as 'X' | 'O' | ''
 };
 
-let _cpu : boolean = false;
+export let cpu : boolean = false;
 let isGameChoosed : boolean = false;
 let isGameStarted : boolean = false;
 
@@ -65,7 +65,7 @@ export function updateStartButton() {
   
     // === if we play against the cpu === //
     cpuGame.addEventListener('click', () => {
-      _cpu = true;
+      cpu = true;
       isGameChoosed = true;
   
       cpuGame.style.opacity = '1';
@@ -76,7 +76,7 @@ export function updateStartButton() {
   
     // === if we play against another player === //
     multiGame.addEventListener('click', () => {
-      _cpu = false;
+      cpu = false;
       isGameChoosed = true;
   
       multiGame.style.opacity = '1';
