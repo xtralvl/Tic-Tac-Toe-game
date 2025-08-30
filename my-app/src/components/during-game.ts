@@ -1,6 +1,6 @@
 // === THIS HANDLES THE DURING GAME === //
 
-import { currentPlayerObject, newGameMenu } from './start-game';
+import { currentPlayerObject, newGameMenu, duringGame, startGameButton, OIcon, XIcon, cpuGame, multiGame } from './start-game';
 
 const fields = document.querySelectorAll<HTMLButtonElement>('.field');
 const actualTurn = document.getElementById('actual-turn-container');
@@ -8,13 +8,16 @@ const restartButton = document.getElementById('restart-button') as HTMLButtonEle
 
 const modal = document.getElementById('modal') as HTMLDivElement;
 const modalResultText = document.getElementById('modal-result-text') as HTMLHeadElement;
+const modalWinnerIcon = document.getElementById('modal-winner-icon') as HTMLDivElement;
 
 const overlay = document.querySelector('.overlay') as HTMLDivElement;
 const nextRoundButton = document.getElementById('next-round-button') as HTMLButtonElement;
+const quitButton = document.getElementById('quit-button') as HTMLButtonElement;
+
 
 // keep the moves outside of the click handler so they persist
 let player1Moves: number[] = [];
-let player2Moves: number[] = [];
+let player2Moves: number[] = []; // it is cpu moves also
 let winnerFields : any = [];
 
 
@@ -61,6 +64,7 @@ function gameRuns() {
             fields[i].style.border = '2px solid #31C3BD';  // or 'winner-field-o'
             modal.style.display = 'grid';
             modalResultText.textContent = `Player1 (${currentPlayerObject.currentPlayer}) wins!`
+            modalWinnerIcon.innerHTML = '<img src="./src/assets/icon-x.svg">'
             overlay.style.display = 'block';
             nextRoundButton.style.backgroundColor = '#31C3BD';
             nextRoundButton.style.borderBottom = '5px solid #218683';
@@ -81,6 +85,7 @@ function gameRuns() {
                 fields[i].style.border = '2px solid #F2B137';  // or 'winner-field-o'
                 modal.style.display = 'grid';
                 modalResultText.textContent = `Player2 (${currentPlayerObject.currentPlayer}) wins!`
+                modalWinnerIcon.innerHTML = '<img src="./src/assets/icon-o.svg">'
                 overlay.style.display = 'block';
                 nextRoundButton.style.backgroundColor = '#F2B137';
                 nextRoundButton.style.borderBottom = '5px solid #b9872b';
@@ -106,6 +111,7 @@ function gameRuns() {
         field.disabled = false; // re-enable buttons
         field.style.opacity = '0.65'
         field.classList.remove('winner-field-x', 'winner-field-o');
+        field.style.border = 'none';
 
 
       });
@@ -129,6 +135,21 @@ function gameRuns() {
       field.classList.remove('winner-field-x', 'winner-field-o');
       field.style.border = 'none';  // or 'winner-field-o'
     });
+  });
+
+  quitButton.addEventListener('click', () => {
+    duringGame.style.display = 'none';
+    newGameMenu.style.display = 'grid';
+    modal.style.display = 'none';
+    overlay.style.display = 'none';
+    startGameButton.disabled = true;
+    startGameButton.classList.remove('enabled');
+    OIcon.classList.add('not-active-icon');
+    XIcon.classList.add('not-active-icon');
+    cpuGame.style.opacity = '0.5';
+    multiGame.style.opacity = '0.5';
+
+
 
 
   })

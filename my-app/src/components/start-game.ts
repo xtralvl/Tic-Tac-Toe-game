@@ -2,15 +2,15 @@
 
 export const newGameMenu = document.getElementById('new-game-menu') as HTMLDivElement;
 
-const XIcon = document.getElementById('x-button-menu') as HTMLButtonElement;
-const OIcon = document.getElementById('o-button-menu') as HTMLButtonElement;
+export const XIcon = document.getElementById('x-button-menu') as HTMLButtonElement;
+export const OIcon = document.getElementById('o-button-menu') as HTMLButtonElement;
 
-const cpuGame = document.getElementById('menu-new-game-cpu-button') as HTMLButtonElement;
-const multiGame = document.getElementById('menu-new-game-multi-button') as HTMLButtonElement;
+export const cpuGame = document.getElementById('menu-new-game-cpu-button') as HTMLButtonElement;
+export const multiGame = document.getElementById('menu-new-game-multi-button') as HTMLButtonElement;
 
-const startGameButton = document.getElementById('start-game') as HTMLButtonElement;
+export const startGameButton = document.getElementById('start-game') as HTMLButtonElement;
 
-const duringGame = document.getElementById('during-game-container') as HTMLDivElement;
+export const duringGame = document.getElementById('during-game-container') as HTMLDivElement;
 
 
 
