@@ -46,10 +46,12 @@ function cpuPlay() {
   const winCombo = getWinningCombo(player2Moves);
   if (winCombo) {
     winCombo.forEach(i => fields[i].style.border = '2px solid #F2B137');
-    modal.style.display = 'grid';
+    setTimeout(() => {
+      modal.style.display = 'grid';
+      overlay.style.display = 'block';
+    }, 1000);
     modalResultText.textContent = `Player2 (O) wins!`;
     modalWinnerIcon.innerHTML = '<img src="./src/assets/icon-o.svg">';
-    overlay.style.display = 'block';
     nextRoundButton.style.backgroundColor = '#F2B137';
     nextRoundButton.style.borderBottom = '5px solid #b9872b';
     
@@ -63,7 +65,6 @@ function cpuPlay() {
     actualTurn.innerHTML = `<p>X TURN</p>`;
   }
 }
-
 
 
 const winningCombos: number[][] = [
@@ -89,7 +90,7 @@ const winningCombos: number[][] = [
 
   
 // check if a player has a winning combo
-// ChatGPT did this function
+// ChatGPT made this function
 // return the actual winning combo (array of 3 field indexes) or null if no win yet
 function getWinningCombo(playerMoves: number[]): number[] | null {
     for (const combo of winningCombos) {
@@ -118,15 +119,18 @@ function gameRuns() {
 
           const winCombo = getWinningCombo(player1Moves); 
           if (winCombo) {
+            cpuTurn = false; // if player 1 gets a winning combo before cpu, cpu does not make a next move
             winCombo.forEach(i => {
               fields[i].style.border = '2px solid #31C3BD';
 
 
             });
-            modal.style.display = 'grid';
+            setTimeout(() => {
+              modal.style.display = 'grid';
+              overlay.style.display = 'block';
+            }, 1000);
             modalResultText.textContent = `Player1 (${currentPlayerObject.currentPlayer}) wins!`
             modalWinnerIcon.innerHTML = `<img src="${iconX}">`;
-            overlay.style.display = 'block';
             nextRoundButton.style.backgroundColor = '#31C3BD';
             nextRoundButton.style.borderBottom = '5px solid #218683';
 
@@ -143,8 +147,6 @@ function gameRuns() {
             }
           };
           
-
-
         }
         
         else {
@@ -160,10 +162,12 @@ function gameRuns() {
                 fields[i].style.border = '2px solid #F2B137';
 
             });
-            modal.style.display = 'grid';
+            setTimeout(() => {
+              modal.style.display = 'grid';
+              overlay.style.display = 'block';
+            }, 1000);
             modalResultText.textContent = `Player2 (${currentPlayerObject.currentPlayer}) wins!`
             modalWinnerIcon.innerHTML = `<img src="${iconO}">`;
-            overlay.style.display = 'block';
             nextRoundButton.style.backgroundColor = '#F2B137';
             nextRoundButton.style.borderBottom = '5px solid #b9872b';
 
@@ -179,11 +183,24 @@ function gameRuns() {
         if (actualTurn) {
           actualTurn.innerHTML = `<p>${currentPlayerObject.currentPlayer} TURN</p>`;
         }
-      });
-      
 
-      // the cpu comes here 
-    });
+        // === IT TIES === //
+        const allFieldsFilled = Array.from(fields).every(f => f.disabled);
+        if (allFieldsFilled && !getWinningCombo(player1Moves) && !getWinningCombo(player2Moves)) {
+          setTimeout(() => {
+            modal.style.display = 'grid';
+            overlay.style.display = 'block';
+          }, 1000);
+          modalResultText.textContent = `TIES!`
+          nextRoundButton.style.backgroundColor = 'white';
+          nextRoundButton.style.borderBottom = '5px solid #3740457a';
+
+          ties++;
+          const currentTies = document.getElementById('current-ties') as HTMLParagraphElement;
+          currentTies.textContent = `${ties}`
+      }            
+        })
+      });
   }
   handleClickedField();
 
@@ -216,8 +233,10 @@ function gameRuns() {
     fields.forEach(field => {
       field.innerHTML = '';
       field.disabled = false; // re-enable buttons
-      field.style.opacity = '0.65'
-      field.classList.remove('blue-winner-border', 'yellow-winner-border');
+      field.style.opacity = '0.65';
+      field.style.border = 'none';
+      field.style.borderBottom = '8px solid #0c1217ac'
+
 
     });
     player1Moves = [];
@@ -255,6 +274,7 @@ function gameRuns() {
     });
 
   })
+
 
 }
 
