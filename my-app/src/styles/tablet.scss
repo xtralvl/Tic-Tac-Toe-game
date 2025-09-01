@@ -1,0 +1,42 @@
+@media (min-width: 500px) {
+
+    #new-game-menu {
+        margin: 5rem 20rem !important;
+        width: 60vw !important;
+        max-height: 10rem !important;
+    }
+
+    #during-game-container {
+        width: 60vw !important;
+        margin: 0 0 2rem 0 !important;
+
+        #during-game-top-row-container {
+            grid-row: 1;
+            margin-bottom: 0 !important;
+        }
+
+        #fields-container {
+            display: grid;
+            grid-template-rows: repeat(4, auto) !important;
+            align-items: flex-start;
+            gap: 0 !important;
+            grid-row: 2 / 5 ;
+
+            #first-field-row,
+            #second-field-row,
+            #third-field-row {
+                margin: 0 !important;
+
+            }
+        }
+
+        #scores-container {
+            grid-row: 5 !important;
+            margin: 0 !important;
+
+        }
+    }
+
+
+
+}

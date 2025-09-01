@@ -191,7 +191,7 @@ function gameRuns() {
             modal.style.display = 'grid';
             overlay.style.display = 'block';
           }, 1000);
-          modalResultText.textContent = `TIES!`
+          modalResultText.textContent = `ROUND TIED!`
           nextRoundButton.style.backgroundColor = 'white';
           nextRoundButton.style.borderBottom = '5px solid #3740457a';
 
