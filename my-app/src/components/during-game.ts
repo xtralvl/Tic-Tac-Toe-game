@@ -192,6 +192,7 @@ function gameRuns() {
             overlay.style.display = 'block';
           }, 1000);
           modalResultText.textContent = `ROUND TIED!`
+          modalWinnerIcon.innerHTML = '';
           nextRoundButton.style.backgroundColor = 'white';
           nextRoundButton.style.borderBottom = '5px solid #3740457a';
 
