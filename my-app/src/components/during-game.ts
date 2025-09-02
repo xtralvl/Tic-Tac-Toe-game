@@ -269,8 +269,11 @@ function gameRuns() {
     fields.forEach(field => {
       field.innerHTML = '';
       field.disabled = false; // re-enable buttons
-      field.style.opacity = '0.65'
-      field.classList.remove('blue-winner-border', 'yellow-winner-border');
+      field.style.opacity = '0.65';
+      field.style.border = 'none';
+      field.style.borderBottom = '8px solid #0c1217ac'
+      player1Moves = [];
+      player2Moves = [];
     });
 
   })
