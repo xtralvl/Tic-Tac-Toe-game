@@ -8,82 +8,97 @@
   </head>
 
   <body>
-
-    <!-- OVERLAY THAT IS SHOWN ONLY WHEN THE MODAL IS SHOWN TOOM-->
-    <div class="overlay"></div>
+    <!-- OVERLAY THAT IS SHOWN ONLY WHEN THE MODAL IS SHOWN -->
+    <div class="overlay" aria-hidden="true"></div>
 
     <!-- NEW GAME MENU -->
-    <div id="new-game-menu">
+    <main id="new-game-menu" role="dialog" aria-labelledby="menu-heading" aria-modal="true">
       <div id="new-game-menu-logo-container">
-        <img src="./src/assets/logo.svg">
+        <img src="./src/assets/logo.svg" alt="Tic Tac Toe logo">
       </div>
 
-        <div id="icon-picker-outer-container">
-          <h1>PICK PLAYER 1’S MARK</h1>
+      <div id="icon-picker-outer-container">
+        <h1 id="menu-heading">Pick Player 1’s Mark</h1>
 
-          <div id="icon-picker-inner-container">
-            <button id="x-button-menu"><img src="./src/assets/icon-x.svg" ></button>
-            <button id="o-button-menu"><img src="./src/assets/icon-o.svg" ></button>
-          </div>
-
-          <h2>REMEMBER : PLAYER1 GOES FIRST</h2>
+        <div id="icon-picker-inner-container" role="group" aria-label="Choose player 1 mark">
+          <button id="x-button-menu" aria-label="Choose X">
+            <img src="./src/assets/icon-x.svg" alt="X icon">
+          </button>
+          <button id="o-button-menu" aria-label="Choose O">
+            <img src="./src/assets/icon-o.svg" alt="O icon">
+          </button>
         </div>
 
-        <button id="menu-new-game-cpu-button" >NEW GAME (VS CPU)</button>
-        <button id="menu-new-game-multi-button" >NEW GAME  (VS PLAYER)</button>
-        <button id="start-game" >START GAME</button>
-    </div>
+        <h2>Remember: Player 1 goes first</h2>
+      </div>
+
+      <button id="menu-new-game-cpu-button">New Game (vs CPU)</button>
+      <button id="menu-new-game-multi-button">New Game (vs Player)</button>
+      <button id="start-game">Start Game</button>
+    </main>
 
     <!-- DURING GAME SCREEN -->
-    <div id="during-game-container" >
-      
-      <div id="during-game-top-row-container" >
-      <div id="during-game-screen-logo-container">
-        <img src="./src/assets/logo.svg">
-      </div>
-      <!-- IT DISPLAYS THE ACTUAL TURN WITH JS -->
-      <div id="actual-turn-container" >
-      </div>
-      <button id="restart-button" ><img src="./src/assets/icon-restart.svg" ></button>
-    </div>
+    <section id="during-game-container" aria-label="Game board">
+      <div id="during-game-top-row-container">
+        <div id="during-game-screen-logo-container">
+          <img src="./src/assets/logo.svg" alt="Tic Tac Toe logo">
+        </div>
 
-    <div id="fields-container" >
-      <div id="first-field-row" >
-        <button class="field" ></button>
-        <button class="field" ></button>
-        <button class="field" ></button>
-      </div>
-      <div id="second-field-row" >
-        <button class="field" ></button>
-        <button class="field" ></button>
-        <button class="field" ></button>
-      </div>
-      <div id="third-field-row" >
-        <button class="field" ></button>
-        <button class="field" ></button>
-        <button class="field" ></button>
-      </div>
-      <div id="scores-container" >
-        <div id="x-scores-container" class="scores" ><p>(YOU)</p><p id="player1-current-points"></p></div>
-        <div id="ties-container" class="scores" ><p>TIES</p><p id="current-ties"></p></div>
-        <div id="o-scores-container" class="scores" ><p>(CPU)</p><p id="player2-current-points" ></p></div>
-      </div>
-    </div>
-  </div>
+        <!-- IT DISPLAYS THE ACTUAL TURN WITH JS -->
+        <div id="actual-turn-container" aria-live="polite"></div>
 
-  <!-- MODAL -->
-  <div id="modal" >
-    <!-- This text changes based on the result -->
-    <h3 id="modal-result-text"></h3>
-    <!-- This icon and text changes based on who takes the next round -->
-    <div id="modal-winner-icon" >
-    </div>
-    <div id="modal-buttons-container" >
-      <button id="quit-button">QUIT</button>
-      <button id="next-round-button">NEXT ROUND</button>
-    </div>
+        <button id="restart-button" aria-label="Restart game">
+          <img src="./src/assets/icon-restart.svg" alt="Restart icon">
+        </button>
+      </div>
 
-  </div>
+      <div id="fields-container" role="grid" aria-label="Tic Tac Toe board">
+        <div id="first-field-row" role="row">
+          <button class="field" role="gridcell" aria-label="Empty cell row 1 column 1"></button>
+          <button class="field" role="gridcell" aria-label="Empty cell row 1 column 2"></button>
+          <button class="field" role="gridcell" aria-label="Empty cell row 1 column 3"></button>
+        </div>
+        <div id="second-field-row" role="row">
+          <button class="field" role="gridcell" aria-label="Empty cell row 2 column 1"></button>
+          <button class="field" role="gridcell" aria-label="Empty cell row 2 column 2"></button>
+          <button class="field" role="gridcell" aria-label="Empty cell row 2 column 3"></button>
+        </div>
+        <div id="third-field-row" role="row">
+          <button class="field" role="gridcell" aria-label="Empty cell row 3 column 1"></button>
+          <button class="field" role="gridcell" aria-label="Empty cell row 3 column 2"></button>
+          <button class="field" role="gridcell" aria-label="Empty cell row 3 column 3"></button>
+        </div>
+
+        <div id="scores-container" aria-label="Scores">
+          <div id="x-scores-container" class="scores">
+            <p>X (You)</p>
+            <p id="player1-current-points" aria-live="polite"></p>
+          </div>
+          <div id="ties-container" class="scores">
+            <p>Ties</p>
+            <p id="current-ties" aria-live="polite"></p>
+          </div>
+          <div id="o-scores-container" class="scores">
+            <p>O (CPU)</p>
+            <p id="player2-current-points" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL -->
+    <div id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-result-text">
+      <!-- This text changes based on the result -->
+      <h3 id="modal-result-text"></h3>
+
+      <!-- This icon and text changes based on who takes the next round -->
+      <div id="modal-winner-icon" aria-hidden="true"></div>
+
+      <div id="modal-buttons-container">
+        <button id="quit-button">Quit</button>
+        <button id="next-round-button">Next Round</button>
+      </div>
+    </div>
 
     <script type="module" src="/src/main.ts"></script>
   </body>
