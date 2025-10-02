@@ -31,7 +31,7 @@ It might look simple, but for me it’s a huge milestone — just a few months a
 
 ## 🚀 Live Demo
 
-👉 [Play it here]([[https://your-netlify-link.com](https://tic-tac-toe-game-xtralvl.netlify.app/)](https://tic-tac-toe-game-xtralvl.netlify.app/))  
+👉 (https://tic-tac-toe-game-xtralvl.netlify.app/)
 
 ---
 
