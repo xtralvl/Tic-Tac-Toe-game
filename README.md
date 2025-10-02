@@ -2,7 +2,7 @@
 
 A modern, responsive version of the classic **Tic Tac Toe** game, built as part of the [Frontend Mentor Challenge](https://www.frontendmentor.io/challenges/tic-tac-toe-game-Re7ZF_E2v).  
 
-It might look simple, but for me it’s a huge milestone — just a few months ago I didn’t even know what *HTML* was. This is also my first bigger project in **TypeScript**, and my 6-month frontend bootcamp hasn’t even started yet! 🚀  
+It might look simple, but for me it’s a huge milestone — just a few months ago I didn’t even know what *HTML* was. This is also my first bigger project in **TypeScript**! 🚀  
 
 ---
 
@@ -31,7 +31,7 @@ It might look simple, but for me it’s a huge milestone — just a few months a
 
 ## 🚀 Live Demo
 
-👉 [Play it here]([https://your-netlify-link.com](https://tic-tac-toe-game-xtralvl.netlify.app/))  
+👉 [Play it here]([[https://your-netlify-link.com](https://tic-tac-toe-game-xtralvl.netlify.app/)](https://tic-tac-toe-game-xtralvl.netlify.app/))  
 
 ---
 
